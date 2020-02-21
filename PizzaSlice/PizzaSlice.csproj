@@ -43,28 +43,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PizzaHandler.cs" />
-    <Compile Include="PizzaHelper.cs" />
-    <Compile Include="PizzaSliceInputEntity.cs" />
-    <Compile Include="PizzaSliceOutputEntity.cs" />
+    <Compile Include="LibraryHelper.cs" />
+    <Compile Include="LibraryHandler.cs" />
+    <Compile Include="LibraryInputEntity.cs" />
+    <Compile Include="LibraryOutputEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="a_example.in">
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="a_example.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="b_small.in">
+    <Content Include="b_read_on.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="c_medium.in">
+    <Content Include="c_incunabula.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="d_quite_big.in">
+    <Content Include="d_tough_choices.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="e_also_big.in">
+    <Content Include="e_so_many_books.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="f_libraries_of_the_world.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

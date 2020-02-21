@@ -9,35 +9,42 @@ namespace PizzaSlice
 {
     public class Program
     {
-        public const string INPUT_FILE_NAME = @"e_also_big.in";
-        public const string OUTPUT_FILE_NAME = @"e_also_big_output.in";
+        public const string INPUT_FILE_NAME = @"f_libraries_of_the_world.txt";
+        public const string OUTPUT_FILE_NAME = @"f_libraries_of_the_world_output.txt";
         public static string separator = "\n";
 
         static void Main(string[] args)
         {
-            PizzaSliceInputEntity pizzaInputEntity = new PizzaSliceInputEntity();
-            PizzaSliceOutputEntity pizzaSliceOutput = new PizzaSliceOutputEntity();
-            PizzaHandler handler = new PizzaHandler();
+            var filePathOutput = Path.Combine(Directory.GetCurrentDirectory(), OUTPUT_FILE_NAME);
+            var filePathInput = Path.Combine(Directory.GetCurrentDirectory(), INPUT_FILE_NAME);
 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), INPUT_FILE_NAME);
+            LibraryInputEntity libraryInput = new LibraryInputEntity();
+            LibraryOutputEntity liberyOutput = new LibraryOutputEntity();
+            LibraryHandler handler = new LibraryHandler();
+            TextWriter sw = new StreamWriter(filePathOutput);
 
-            string fullText = File.ReadAllText(filePath);
+            string fullText = File.ReadAllText(filePathInput);
 
-            var fullTextSplitted = PizzaHelper.SplitTextInput(fullText, separator);
+            var fullTextSplitted = LibraryHelper.SplitTextInput(fullText, separator);
 
-            handler.ToPizzaEntity(fullTextSplitted, pizzaInputEntity);
+            handler.ToLibraryEntity(fullTextSplitted, libraryInput);
 
             //calculate logic
-            handler.CalculateNumberOfSlices(pizzaInputEntity, pizzaSliceOutput);
+            handler.CalculateLibraries(libraryInput, liberyOutput);
 
-            var outputText = PizzaHelper.CreateOutputText(pizzaSliceOutput);
 
-            if (File.Exists(OUTPUT_FILE_NAME))
+            //write output header
+            var outputText = LibraryHelper.CreateOutputTextFirstLine(liberyOutput);
+            sw.Write(outputText);
+
+            //write output libraries
+            foreach (var item in liberyOutput.Library)
             {
-                File.Delete(OUTPUT_FILE_NAME);
+                var output = LibraryHelper.CreateOutputTextLibrariesHeader(item);
+                sw.Write(output);               
             }
 
-            File.WriteAllText(OUTPUT_FILE_NAME, outputText);
+            sw.Close();
         }
     }
 }
